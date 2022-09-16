@@ -36,6 +36,7 @@
 
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{% static 'css/demo4.min.css' %}">
+    {% block css %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
 </head>
 
@@ -61,10 +62,10 @@
                             <div class="header-menu">
                                 <ul>
                                     <li><a href="dashboard.html">My Account</a></li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
+                                    <li><a href="/about/">About Us</a></li>
+                                    <li><a href="/blog/">Blog</a></li>
                                     <li><a href="wishlist.html">My Wishlist</a></li>
-                                    <li><a href="login.html" class="">Log In/Register</a></li>
+                                    <li><a href="/login/" class="">Log In/Register</a></li>
                                 </ul>
                             </div>
                             <!-- End .header-menu -->
@@ -92,7 +93,7 @@
                         <button class="mobile-menu-toggler text-primary mr-2" type="button">
 							<i class="fas fa-bars"></i>
 						</button>
-                        <a href="KollegeCliq.html" class="logo">
+                        <a href="/" class="logo">
                             <img src="{% static 'images/clzclick.png' %}" width="111" height="44" alt="Porto Logo">
                         </a>
                     </div>
@@ -122,7 +123,7 @@
                             <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+919084086876</a></h6>
                         </div>
 
-                        <a href="login.html" class="header-icon" title="login"><i class="icon-user-2"></i></a>
+                        <a href="/login/" class="header-icon" title="login"><i class="icon-user-2"></i></a>
 
                         <!-- <a href="wishlist.html" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a> -->
 
