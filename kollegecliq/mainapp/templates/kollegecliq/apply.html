@@ -1,0 +1,314 @@
+{% extends 'kollegecliq/base.html' %}
+{% load static %}
+{% block title %}Apply | kollegecliq{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/style.min.css' %}">{% endblock %}
+{% block content %} 
+<main class="main main-test">
+    <div class="container checkout-container">
+        <ul class="checkout-progress-bar d-flex justify-content-center flex-wrap">
+            <li>
+                <a href="cart.html">college</a>
+            </li>
+            <li class="active">
+                <a href="checkout.html">Apply</a>
+            </li>
+        </ul>
+
+        <div class="login-form-container">
+            <h4>Returning customer?
+                <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link btn-toggle">Login</button>
+            </h4>
+
+            <div id="collapseOne" class="collapse">
+                <div class="login-section feature-box">
+                    <div class="feature-box-content">
+                        <form action="#" id="login-form">
+                            <p>
+                                If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing & Shipping section.
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="mb-0 pb-1">Username or email <span
+                                                class="required">*</span></label>
+                                        <input type="email" class="form-control" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="mb-0 pb-1">Password <span
+                                                class="required">*</span></label>
+                                        <input type="password" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn">LOGIN</button>
+
+                            <div class="form-footer mb-1">
+                                <div class="custom-control custom-checkbox mb-0 mt-0">
+                                    <input type="checkbox" class="custom-control-input" id="lost-password" />
+                                    <label class="custom-control-label mb-0" for="lost-password">Remember
+                                        me</label>
+                                </div>
+
+                                <a href="forgot-password.html" class="forget-password">Lost your password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="checkout-discount">
+            <h4>Have a coupon?
+                <button data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link btn-toggle">ENTER YOUR CODE</button>
+            </h4>
+
+            <div id="collapseTwo" class="collapse">
+                <div class="feature-box">
+                    <div class="feature-box-content">
+                        <p>If you have a coupon code, please apply it below.</p>
+
+                        <form action="#">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm w-auto" placeholder="Coupon code" required="" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-sm mt-0" type="submit">
+                                        Apply Coupon
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-lg-7">
+                <ul class="checkout-steps">
+                    <li>
+                        <h2 class="step-title">Apply</h2>
+
+                        <form action="#" id="checkout-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First name
+                                            <abbr class="required" title="required">*</abbr>
+                                        </label>
+                                        <input type="text" class="form-control" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last name
+                                            <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="select-custom">
+                                <label>Interested Course
+                                    <abbr class="required" title="required">*</abbr></label>
+                                <select name="orderby" class="form-control">
+                                    <option value="" selected="selected">B-Tech
+                                    </option>
+                                    <option value="1">M-tech</option>
+                                    <option value="2">BBA</option>
+                                    <option value="3">MBA</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>College name</label>
+                                <input type="text" class="form-control" />
+                            </div>
+
+                            <div class="select-custom">
+                                <label>Country / Region
+                                    <abbr class="required" title="required">*</abbr></label>
+                                <select name="orderby" class="form-control">
+                                    <option value="" selected="selected">Vanuatu
+                                    </option>
+                                    <option value="1">Brunei</option>
+                                    <option value="2">Bulgaria</option>
+                                    <option value="3">Burkina Faso</option>
+                                    <option value="4">Burundi</option>
+                                    <option value="5">Cameroon</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-1 pb-2">
+                                <label>Street address
+                                    <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="form-control" placeholder="House number and street name" required />
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Apartment, suite, unite, etc. (optional)" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Town / City
+                                    <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="form-control" required />
+                            </div>
+
+                            <div class="select-custom">
+                                <label>State / County <abbr class="required" title="required">*</abbr></label>
+                                <select name="orderby" class="form-control">
+                                    <option value="" selected="selected">NY</option>
+                                    <option value="1">Brunei</option>
+                                    <option value="2">Bulgaria</option>
+                                    <option value="3">Burkina Faso</option>
+                                    <option value="4">Burundi</option>
+                                    <option value="5">Cameroon</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Postcode / Zip
+                                    <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="form-control" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone <abbr class="required" title="required">*</abbr></label>
+                                <input type="tel" class="form-control" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email address
+                                    <abbr class="required" title="required">*</abbr></label>
+                                <input type="email" class="form-control" required />
+                            </div>
+
+                            <div class="form-group mb-1">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="create-account" />
+                                    <label class="custom-control-label" data-toggle="collapse" data-target="#collapseThree" aria-controls="collapseThree" for="create-account">Create an
+                                        account?</label>
+                                </div>
+                            </div>
+
+                            <div id="collapseThree" class="collapse">
+                                <div class="form-group">
+                                    <label>Create account password
+                                        <abbr class="required" title="required">*</abbr></label>
+                                    <input type="password" placeholder="Password" class="form-control" required />
+                                </div>
+                            </div> 
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- End .col-lg-8 -->
+
+            <div class="col-lg-5">
+                <div class="order-summary">
+                    <h3>YOUR DETAILS</h3>
+
+                    <table class="table table-mini-cart">  
+                        <thead>
+                            <tr>
+                                <th colspan="2">Verify your details</th>
+                            </tr>
+                        </thead>                              
+                        <tbody>
+                            <tr>
+                                <td class="product-col">
+                                    <h3 class="product-title">
+                                        Name
+                                    </h3>
+                                </td>
+
+                                <td class="price-col">
+                                    <span>Manish jaiswal</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="product-col">
+                                    <h3 class="product-title">
+                                        Interested Course
+                                    </h3>
+                                </td>
+
+                                <td class="price-col">
+                                    <span>B-tech</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="product-col">
+                                    <h3 class="product-title">
+                                        College Name
+                                    </h3>
+                                </td>
+
+                                <td class="price-col">
+                                    <span>Tula's Institute</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="product-col">
+                                    <h3 class="product-title">
+                                        Address
+                                    </h3>
+                                </td>
+
+                                <td class="price-col">
+                                    <span>Sukrali, Matabala gali, Gurgaon</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="product-col">
+                                    <h3 class="product-title">
+                                        Phone
+                                    </h3>
+                                </td>
+
+                                <td class="price-col">
+                                    <span>+9776398685806</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="product-col">
+                                    <h3 class="product-title">
+                                        E-mail
+                                    </h3>
+                                </td>
+
+                                <td class="price-col">
+                                    <span>csmanishankar@gmail.com</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <div class="payment-methods">
+                        <h4 class="">Payment methods</h4>
+                        <div class="info-box with-icon p-0">
+                            <p>
+                                Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.
+                            </p>
+                        </div>
+                    </div> -->
+
+                    <button type="submit" class="btn btn-dark btn-place-order" form="checkout-form">
+                        Apply
+                    </button>
+                </div>
+                <!-- End .cart-summary -->
+            </div>
+            <!-- End .col-lg-4 -->
+        </div>
+        <!-- End .row -->
+    </div>
+    <!-- End .container -->
+</main>
+<!-- End .main -->
+{% endblock %} 

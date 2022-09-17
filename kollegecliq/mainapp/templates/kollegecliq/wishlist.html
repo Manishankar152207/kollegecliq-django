@@ -1,0 +1,163 @@
+{% extends 'kollegecliq/base.html' %}
+{% load static %}
+{% block title %}Wishlist | kollegecliq{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/style.min.css' %}">{% endblock %}
+{% block content %} 
+<main class="main">
+    <div class="page-header">
+        <div class="container d-flex flex-column align-items-center">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="demo4.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Wishlist
+                        </li>
+                    </ol>
+                </div>
+            </nav>
+
+            <h1>Wishlist</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="wishlist-title">
+            <h2 class="p-2">My Wishlist</h2>
+        </div>
+        <div class="wishlist-table-container">
+            <table class="table table-wishlist mb-0">
+                <thead>
+                    <tr>
+                        <th class="thumbnail-col"></th>
+                        <th class="product-col">College</th>
+                        <th class="price-col">Category</th>
+                        <th class="status-col">Courses</th>
+                        <th class="action-col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="product-row">
+                        <td>
+                            <figure class="product-image-container">
+                                <a href="product.html" class="product-image">
+                                    <img src="{% static 'images/tulas4.jpg' %}" alt="product">
+                                </a>
+
+                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                            </figure>
+                        </td>
+                        <td>
+                            <h5 class="product-title">
+                                <a href="product.html">Tula's Institute,Dehradun</a>
+                            </h5>
+                        </td>
+                        <td class="price-box">Private</td>
+                        <!-- <td>
+                            <span class="stock-status">B-tech,BBA...</span>
+                        </td> -->
+                        <td>
+                            <form action="" style="margin-bottom: 0;">
+                                <select class="form-control-sm" name="" id="" style="border: none;padding: 5px;">
+                                    <option value="">B-tech</option>
+                                    <option value="">M-tech</option>
+                                    <option value="">BBA</option>
+                                </select>
+                            </form>
+                            <span class="stock-status mt-1">Rs.4.3L-Rs.5L</span>
+                        </td>
+                        <td class="action">
+                            <a href="ajax/product-quick-view.html" class="btn btn-quickview mt-1 mt-md-0"
+                                title="Quick View">Quick
+                                View</a>
+                            <a href="apply.html" class="btn btn-dark mt-md-0"
+                            title="Apply">Apply</a>
+                        </td>
+                    </tr>
+
+                    <tr class="product-row">
+                        <td>
+                            <figure class="product-image-container">
+                                <a href="product.html" class="product-image">
+                                    <img src="{% static 'images/tulas4.jpg' %}" alt="product">
+                                </a>
+
+                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                            </figure>
+                        </td>
+                        <td>
+                            <h5 class="product-title">
+                                <a href="product.html">Tula's Institute,Dehradun</a>
+                            </h5>
+                        </td>
+                        <td class="price-box">Private</td>
+                        <!-- <td>
+                            <span class="stock-status">B-tech,BBA...</span>
+                        </td> -->
+                        <td>
+                            <form action="" style="margin-bottom: 0;">
+                                <select class="form-control-sm" name="" id="" style="border: none;padding: 5px;">
+                                    <option value="">B-tech</option>
+                                    <option value="">M-tech</option>
+                                    <option value="">BBA</option>
+                                </select>
+                            </form>
+                            <span class="stock-status mt-1">Rs.4.3L-Rs.5L</span>
+                        </td>
+                        <td class="action">
+                            <a href="ajax/product-quick-view.html" class="btn btn-quickview mt-1 mt-md-0"
+                                title="Quick View">Quick
+                                View</a>
+                            <a href="apply.html" class="btn btn-dark mt-md-0"
+                            title="Apply">Apply</a>
+                        </td>
+                    </tr>
+
+                    <tr class="product-row">
+                        <td>
+                            <figure class="product-image-container">
+                                <a href="product.html" class="product-image">
+                                    <img src="{% static 'images/tulas4.jpg' %}" alt="product">
+                                </a>
+
+                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                            </figure>
+                        </td>
+                        <td>
+                            <h5 class="product-title">
+                                <a href="product.html">Tula's Institute,Dehradun</a>
+                            </h5>
+                        </td>
+                        <td class="price-box">Private</td>
+                        <!-- <td>
+                            <span class="stock-status">B-tech,BBA...</span>
+                        </td> -->
+                        <td>
+                            <form action="" style="margin-bottom: 0;">
+                                <select class="form-control-sm" name="" id="" style="border: none;padding: 5px;">
+                                    <option value="">B-tech</option>
+                                    <option value="">M-tech</option>
+                                    <option value="">BBA</option>
+                                </select>
+                            </form>
+                            <span class="stock-status mt-1">Rs.4.3L-Rs.5L</span>
+                        </td>
+                        <td class="action">
+                            <a href="ajax/product-quick-view.html" class="btn btn-quickview mt-1 mt-md-0"
+                                title="Quick View">Quick
+                                View</a>
+                            <a href="apply.html" class="btn btn-dark mt-md-0"
+                            title="Apply">Apply</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center mt-1">
+                <button class="btn btn-dark" style="width: fit-content;">
+                    Compare
+                </button>
+            </div>
+        </div><!-- End .cart-table-container -->
+    </div><!-- End .container -->
+</main><!-- End .main -->
+{% endblock %} 

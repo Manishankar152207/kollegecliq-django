@@ -21,4 +21,11 @@ urlpatterns = [
     path('login/', views.loginregister),
     path('blog/', views.blog),
     path('about/', views.about),
+    path('wishlist/', views.wishlist),
+    path('myaccount/', views.myaccount),
+    path('Register-college/', views.register_college),
+    path('Register-user/', views.register_user),
+    path('forgot-password/', views.forgot_password),
+    path('college-detail/', views.college_detail),
+    path('apply/', views.apply),
 ]

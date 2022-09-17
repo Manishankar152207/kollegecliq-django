@@ -1,0 +1,62 @@
+{% extends 'kollegecliq/base.html' %}
+{% load static %}
+{% block title %}Register User | kollegecliq{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/style.min.css' %}">{% endblock %}
+{% block content %} 
+	<main class="main">
+		<div class="page-header">
+			<div class="container d-flex flex-column align-items-center">
+				<nav aria-label="breadcrumb" class="breadcrumb-nav">
+					<div class="container">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="demo4.html">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">
+								Register User
+							</li>
+						</ol>
+					</div>
+				</nav>
+
+				{% comment %} <h1>Register</h1> {% endcomment %}
+			</div>
+		</div>
+
+		<div class="container login-container">
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<div class="row">
+						<div class="col-md-6 mx-auto">
+							<div class="heading mb-1">
+								<h2 class="title">Register</h2>
+							</div>
+
+							<form action="#">
+								<label for="login-email">
+									Phone or email address
+									<span class="required">*</span>
+								</label>
+								<input type="text" class="form-input form-wide" id="login" required />
+
+								<!-- <label for="login-password">
+									Password
+									<span class="required">*</span>
+								</label>
+								<input type="password" class="form-input form-wide" id="login-password" required /> -->
+								<a href="/login/"><b>Click here to login</b></a>
+								<button type="submit" class="btn btn-dark btn-md w-100 mt-2">
+									Verify
+								</button>
+								<div class="text-center mt-2">
+									<span>Get your college register here.</span><br>
+									<a href="/Register-college/"
+									class="forget-password text-dark form-footer-right">Register</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main><!-- End .main -->
+
+{% endblock %}
