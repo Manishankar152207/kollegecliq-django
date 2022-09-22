@@ -30,19 +30,34 @@
 								<h2 class="title">Register</h2>
 							</div>
 
-							<form action="#">
+							<form action="/Register-user/" method="post">
+								{% csrf_token %}
 								<label for="login-email">
 									Phone or email address
 									<span class="required">*</span>
 								</label>
-								<input type="text" class="form-input form-wide" id="login" required />
-
-								<!-- <label for="login-password">
-									Password
-									<span class="required">*</span>
-								</label>
-								<input type="password" class="form-input form-wide" id="login-password" required /> -->
+								<input type="text" class="form-input form-wide" id="loginemail" name="username" required />
+								<div class="form-group">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="create-account" onclick="hideShowPassword()"/>
+										<label class="custom-control-label" data-toggle="collapse" data-target="#collapsePass" aria-controls="collapsePass" for="create-account">Want password during login ?</label>
+									</div>
+								</div>
+								<div id="collapsePass" class="collapse">
+									<label for="login-password">
+										Password
+										<span class="required">*</span>
+									</label>
+									<input type="password" class="form-input form-wide" id="login-password1" name="login-password1"/>
+									<label for="login-password">
+										Password(Confirm)
+										<span class="required">*</span>
+									</label>
+									<input type="password" class="form-input form-wide" id="login-password2" name="login-password2"/>
+								</div> 
+								
 								<a href="/login/"><b>Click here to login</b></a>
+								<p>{{ message }}</p>
 								<button type="submit" class="btn btn-dark btn-md w-100 mt-2">
 									Verify
 								</button>

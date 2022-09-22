@@ -693,6 +693,19 @@
 
     {% block newsletter %} {% endblock %}
     <!-- End .newsletter-popup -->
+    <script>
+        function hideShowPassword(){
+            if($("#create-account").is(':checked')){
+                $("#login-password1").prop('required', true);
+                $("#login-password2").prop('required', true);  // checked
+            }                
+            else{
+                $("#login-password1").prop('required', false);  // unchecked
+                $("#login-password2").prop('required', false);
+            } 
+        }
+    </script>
+
 
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
