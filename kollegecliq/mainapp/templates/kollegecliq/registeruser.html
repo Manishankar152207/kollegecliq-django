@@ -30,13 +30,18 @@
 								<h2 class="title">Register</h2>
 							</div>
 
-							<form action="/Register-user/" method="post">
+							<form action="/Register-user/" method="post" id="registeruser" onsubmit="return validateForm()">
 								{% csrf_token %}
 								<label for="login-email">
 									Phone or email address
 									<span class="required">*</span>
 								</label>
-								<input type="text" class="form-input form-wide" id="loginemail" name="username" required />
+								<input type="text" class="form-input form-wide" id="username" name="username" autocomplete="off" required/>
+								<label for="login-email">
+									Your Name
+									<span class="required">*</span>
+								</label>
+								<input type="text" class="form-input form-wide" id="name" name="name" autocomplete="off" required/>								
 								<div class="form-group">
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="create-account" onclick="hideShowPassword()"/>
@@ -48,19 +53,34 @@
 										Password
 										<span class="required">*</span>
 									</label>
-									<input type="password" class="form-input form-wide" id="login-password1" name="login-password1"/>
+									<input type="password" class="form-input form-wide" id="login-password1" name="login-password1" autocomplete="off"/>
 									<label for="login-password">
 										Password(Confirm)
 										<span class="required">*</span>
 									</label>
-									<input type="password" class="form-input form-wide" id="login-password2" name="login-password2"/>
+									<input type="password" class="form-input form-wide" id="login-password2" name="login-password2" autocomplete="off"/>
 								</div> 
 								
 								<a href="/login/"><b>Click here to login</b></a>
-								<p>{{ message }}</p>
-								<button type="submit" class="btn btn-dark btn-md w-100 mt-2">
-									Verify
-								</button>
+								{% if message %}
+								<div class="alert alert-primary d-flex align-items-center mt-1" role="alert">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+									  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+									</svg>
+									<div>
+										<b>&nbsp;{{ message }}</b>
+									</div>
+								</div>
+								  {% endif %}
+								{% if message %}
+									<button type="submit" class="btn btn-dark btn-md w-100">
+										Verify
+									</button>
+								{% else %}
+									<button type="submit" class="btn btn-dark btn-md w-100 mt-1">
+										Verify
+									</button>
+								{% endif %}
 								<div class="text-center mt-2">
 									<span>Get your college register here.</span><br>
 									<a href="/Register-college/"
@@ -74,4 +94,6 @@
 		</div>
 	</main><!-- End .main -->
 
+{% endblock %}
+{% block javascript %}
 {% endblock %}
