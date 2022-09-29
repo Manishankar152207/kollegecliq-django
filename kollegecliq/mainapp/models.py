@@ -1,3 +1,4 @@
+from email import message
 from django.db import models
 
 # Create your models here.
@@ -11,6 +12,12 @@ class RegisteredUsers(models.Model):
     created_on = models.DateTimeField(auto_now_add = True)
     updated_on = models.DateTimeField(auto_now=True)
     is_live = models.CharField(max_length=2,default='0')
+
+class Contact(models.Model):
+    name = models.CharField(max_length=55,null=False)
+    email = models.CharField(max_length=55)
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add = True)
 
     
     

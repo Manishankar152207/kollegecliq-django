@@ -68,7 +68,11 @@
                                     <li><a href="/about/">About Us</a></li>
                                     <li><a href="/blog/">Blog</a></li>
                                     <li><a href="/wishlist/">My Wishlist</a></li>
+                                    {% if isLogin %}
+                                    <li><a href="/logout/" class="">Logout</a></li>
+                                    {% else %}
                                     <li><a href="/login/" class="">Log In/Register</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                             <!-- End .header-menu -->
@@ -125,8 +129,12 @@
                             <img alt="phone" src="../../static/images/phone.png" width="30" height="30" class="pb-1">
                             <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+919084086876</a></h6>
                         </div>
-
+                        {% if isLogin %}
+                        <a href="/logout/" class="header-icon" title="login"><i class="fas fa-sign-out-alt"></i></a>
+                        {% else %}
                         <a href="/login/" class="header-icon" title="login"><i class="icon-user-2"></i></a>
+                        {% endif %}
+                        
 
                         <!-- <a href="wishlist.html" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a> -->
 

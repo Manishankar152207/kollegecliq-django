@@ -8,15 +8,13 @@ import copy
 import uuid
 from django.contrib import messages
 from datetime import datetime
-from mainapp.serializers import RegisterSerializer
+from mainapp.serializers import RegisterSerializer,ContactSerializer
 from mainapp.models import RegisteredUsers
 from django.views.decorators.csrf import csrf_exempt
 import base64
 
 # Create your views here.
 def index(request):
-    if request.session:
-        print(request.session['user_id'])
     return render(request,'kollegecliq/index.html')
 
 @csrf_exempt
@@ -40,11 +38,26 @@ def loginregister(request):
             return JsonResponse({"message":"In-Valid Username."}) 
     return render(request,'kollegecliq/login.html')
 
+def logout_user(request):
+    if request.session.has_key('user_id'):
+        del request.session['user_id']
+        del request.session['username']
+    return redirect('/login/')
+
 def blog(request):
     return render(request,'kollegecliq/blog.html')
 
 def about(request):
     return render(request,'kollegecliq/about.html')
+
+def contact_us(request):
+    message = ''
+    if request.method == 'POST':
+        serializer = ContactSerializer(data=request.POST)
+        if serializer.is_valid():
+            serializer.save()
+            message = "Thank you for contacting us. We recieved your message."
+    return render(request,'kollegecliq/contact.html',context={'message':message})
 
 def wishlist(request):
     return render(request,'kollegecliq/wishlist.html')

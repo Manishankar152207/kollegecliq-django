@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainapp.models import RegisteredUsers
+from mainapp.models import RegisteredUsers,Contact
 
 class RegisterSerializer(serializers.ModelSerializer):
     user_id = serializers.CharField(max_length=55, required=True)
@@ -12,3 +12,13 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegisteredUsers 
         fields = ['user_id','username','name','email','phone','password']
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(required=True)
+    email = serializers.CharField(required=True)
+    message = serializers.CharField(required=True)
+
+    class Meta:
+        model = Contact 
+        fields = ['name','email','message']
