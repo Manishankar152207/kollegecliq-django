@@ -11,9 +11,6 @@ function hideShowPassword(){
 
 function validateForm(){
     username = $('#username').val();
-    //username = document.getElementById('username').value;
-    console.log(ValidateEmail(username))
-    console.log(isNumeric(username))
     if (ValidateEmail(username) == true || isNumeric(username) == true){
         return (true)
     }else{
@@ -69,6 +66,43 @@ function removeError(){
     $('#alert-error').css("display", "none")
 }
 
+function validatePhone(){
+    var phone = $('#phone').val();
+    if (phone.length == 10 && isNumeric(phone)) {
+        $('#phone').css("border-color","green");
+        console.log('phone is valid')
+    }else if(phone.length==0){
+        $('#phone').css("border-color","#dfdfdf");
+    }else{
+        $('#phone').css("border-color","red");
+    }
+}
+
+function validateCollegeEmail(){
+    var email = $('#email').val();
+    if (ValidateEmail(email)) {
+        $('#email').css("border-color","green");
+    }else if(email.length==0){
+        $('#email').css("border-color","#dfdfdf");
+    }else{
+        $('#email').css("border-color","red");
+    }
+}
+
+function validatePass(){
+    var pass1 = $('#password1').val();
+    var pass2 = $('#password2').val();
+    if (pass1 && pass2 && (pass1 == pass2)){
+        $('#password1').css("border-color","green");
+        $('#password2').css("border-color","green");
+    }else if(pass1 && pass2 && (pass1 != pass2)){
+        $('#password1').css("border-color","red");
+        $('#password2').css("border-color","red");
+    }else{
+        $('#password1').css("border-color","#dfdfdf");
+        $('#password2').css("border-color","#dfdfdf");
+    }
+}
 
 var state_arr = new Array("Andaman & Nicobar", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra & Nagar Haveli", "Daman & Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttar Pradesh", "Uttaranchal", "West Bengal");
 
@@ -131,3 +165,4 @@ function print_city(city_id, city_index){
 		option_str.options[option_str.length] = new Option(city_arr[i],city_arr[i]);
 	}
 }
+print_state("sts");

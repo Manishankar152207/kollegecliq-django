@@ -1,0 +1,67 @@
+{% extends 'kollegecliq/base.html' %}
+{% load static %}
+{% block title %}Forgot Password | kollegecliq{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/style.min.css' %}">{% endblock %}
+{% block content %} 
+<main class="main">
+	<div class="page-header">
+		<div class="container d-flex flex-column align-items-center">
+			<nav aria-label="breadcrumb" class="breadcrumb-nav">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="demo4.html">Home</a></li>
+						<li class="breadcrumb-item"><a href="category.html">Login</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Verify
+						</li>
+					</ol>
+				</div>
+			</nav>
+
+			{% comment %} <h1>My Account</h1> {% endcomment %}
+		</div>
+	</div>
+
+	<div class="container reset-password-container">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3">
+				<div class="feature-box border-top-primary">
+					<div class="feature-box-content">
+						<form class="mb-0" action="/verify-otp/" method="post">
+							{% csrf_token %}
+							<p>
+								An OTP has been sent to your provided phone number and email for verification. If you haven't 
+								received yet please check your spam folder.
+							</p>
+							<div class="form-group mb-0">
+								<label for="otp" class="font-weight-normal">Email/Phone Verification</label>
+								<input type="text" class="form-control" id="type" name="type" value="{{ type }}" maxlength="6"
+									required autocomplete="off" hidden/>
+								<input type="text" class="form-control" id="otp" name="otp" maxlength="6"
+									required autocomplete="off"/>
+							</div>
+							{% comment %} <div class="form-group mb-0">
+								<label for="otpforphone" class="font-weight-normal">Verify Phone</label>
+								<input type="text" class="form-control" id="otpforphone" name="phoneotp"
+									required autocomplete="off"/>
+							</div> {% endcomment %}
+
+							<div class="form-footer mb-0">
+								{% if message %}
+								<a href="javascript:void(0);">{{ message }}</a>	
+								{% else %}
+								<a href="/resend/">Resend OTP</a>							
+								{% endif %}
+								<button type="submit"
+									class="btn btn-md btn-primary form-footer-right font-weight-normal text-transform-none mr-0">
+									Verify
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main><!-- End .main -->
+{% endblock %}
