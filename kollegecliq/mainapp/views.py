@@ -31,11 +31,26 @@ def loginregister(request):
                 if user.password == make_password(request.POST['password']):
                     request.session['user_id']= user.user_id
                     request.session['username']= user.username
-                    return JsonResponse({"message":"ok"}) 
+                    return JsonResponse({"message":"ok",'type':'user'}) 
+                else:
+                    return JsonResponse({"message":"Incorrect username or password."})
             elif (not user.password and not request.POST['password']):
                 request.session['user_id']= user.user_id
                 request.session['username']= user.username
                 return JsonResponse({"message":"ok"}) 
+        elif RegisteredCollege.objects.filter(email=request.POST['username'].lower()) or RegisteredCollege.objects.filter(phone=request.POST['username']):            
+            if not request.POST['password']:
+                message = "required"
+                return JsonResponse({"message":message})
+            else:
+                user = RegisteredCollege.objects.get(email=request.POST['username'].lower()) if RegisteredCollege.objects.filter(email=request.POST['username'].lower()) else RegisteredCollege.objects.get(phone=request.POST['username']) 
+                print(user)
+                if user.password == make_password(request.POST['password']):
+                    request.session['user_id']= user.user_id
+                    request.session['username']= user.email
+                    return JsonResponse({"message":"ok"})
+                else:
+                    return JsonResponse({"message":"Incorrect username or password."})
         else:
             return JsonResponse({"message":"In-Valid Username."}) 
     return render(request,'kollegecliq/login.html')
@@ -65,8 +80,55 @@ def wishlist(request):
     return render(request,'kollegecliq/wishlist.html')
 
 def myaccount(request):
-    return render(request,'kollegecliq/myaccount.html')
-    
+    if request.session.has_key('user_id'):
+        user, type = (RegisteredUsers.objects.get(user_id = request.session['user_id']), 'user') if RegisteredUsers.objects.filter(user_id = request.session['user_id']) else (RegisteredCollege.objects.get(user_id = request.session['user_id']), 'college')
+        return render(request, 'kollegecliq/myaccount.html', context={'user':user,'type':type})
+    return redirect('/login/')
+
+@csrf_exempt
+def edit_profile(request):
+    message = ''
+    if request.session.has_key('user_id'):
+        if request.method == 'POST':
+            if (request.POST['currentpassword'] != '' and (request.POST['password1'] == request.POST['password2']) or (request.POST['currentpassword'] == '' and (request.POST['password1'] == request.POST['password2']))):
+                user = RegisteredUsers.objects.get(user_id=request.session['user_id'])
+                if user.password:
+                    if request.POST['currentpassword']:
+                        if make_password(request.POST['currentpassword']) == user.password:
+                            user.name = request.POST['name']
+                            user.username = request.POST['username'] 
+                            user.email = request.POST['email']
+                            user.phone = request.POST['phone']
+                            user.password = make_password(request.POST['password2']) 
+                            user.updated_on = datetime.now()
+                            user.save()
+                            message = "Profile updated successfully."
+                        else:
+                            message = "Current Password don't match."   
+                else:
+                    if request.POST['currentpassword']:
+                        message = "Current Password don't match."
+                    else:
+                        user.name = request.POST['name']
+                        user.username = request.POST['username'] 
+                        user.email = request.POST['email']
+                        user.phone = request.POST['phone'] 
+                        user.password = make_password(request.POST['password2']) 
+                        user.updated_on = datetime.now()
+                        user.save()
+                        message = "Profile updated successfully."
+                    
+            elif request.POST['currentpassword'] == '':
+                message = "Current password is required."  
+                         
+            else:
+                message = "Password don't match."
+        else:
+            message = "Invalid request."
+    else:
+        message = "Invalid request."
+    return JsonResponse({"message":message})
+
 def register_college(request):
     message = ''
     if request.method == "POST":
@@ -134,19 +196,49 @@ def forgot_password(request):
     if request.method == 'POST':
         if checkemail(request.POST['username']):
             if RegisteredUsers.objects.filter(email = request.POST['username'].lower()):
-                message = "Email has been sent to your mail-ID."
+                request.session['ch-username'] = request.POST['username']
+                otp = generateOtp()
+                print(otp)
+                request.session['ch-otp'] = otp
+                message = "OTP has been sent to your Email."
+                return render(request,'kollegecliq/otpverify.html',context={'message':message,'type':'chpu'})
             else:
-                message = "Sorry, no record found."
+                message = "Sorry, No record found."
 
         elif request.POST['username'].isnumeric():
             if RegisteredUsers.objects.filter(phone = request.POST['username']):
+                request.session['ch-username'] = request.POST['username']
+                otp = generateOtp()
+                print(otp)
+                request.session['ch-otp'] = otp
                 message = "OTP has been sent to your Phone."
+                return render(request,'kollegecliq/otpverify.html',context={'message':message,'type':'chpu'})
             else:
-                message = "In-valid phone or email."
+                message = "Sorry, No record found"
         else:
-            message = "Sorry, no record found."
+            message = "Sorry, No record found."
 
     return render(request,'kollegecliq/forgot-password.html',context={'message':message})
+
+def change_password(request):
+    message = ''
+    if request.method == 'POST':
+        if (request.POST['password1'] == request.POST['password2']) and (request.POST['password1'] != "") and (request.POST['password2'] != ""):
+            user = ''
+            if (request.POST['type'] == 'chpu') and (RegisteredUsers.objects.filter(username=request.session['ch-username'])):
+                user = RegisteredUsers.objects.get(username=request.session['ch-username'])
+            elif (request.POST['type'] == 'chpc') and (RegisteredCollege.objects.filter(email=request.session['ch-username'])):
+                user = RegisteredCollege.objects.get(email=request.session['ch-username'])
+            user.password = make_password(request.POST['password1'])
+            user.save()
+            del request.session['ch-username']
+            message = "Password updated."
+        else:
+            message = "Passwords do not matched."
+            return render(request,'kollegecliq/change-password.html',context={'message':message,'type':request.POST['type']})
+        return render(request,'kollegecliq/login.html', context={'message':message})
+    return redirect('/login/')
+    
 
 def college_detail(request):
     return render(request,'kollegecliq/collegedetail.html')
@@ -186,6 +278,22 @@ def verify_otp(request):
             else:
                 message = "Wrong OTP! Please resend."
                 return render(request,'kollegecliq/otpverify.html',context={'message' : message})
+        elif type == 'chpu':
+            if request.session['ch-otp'] == otp:
+                del request.session['ch-otp']
+                return render(request,'kollegecliq/change-password.html',context={'message' : message, 'type':'chpu'})
+                # return redirect('/login/') 
+            else:
+                message = "Wrong OTP! Please resend."
+                return render(request,'kollegecliq/otpverify.html',context={'message' : message, 'type':'chpu'})
+        elif type == 'chpc':
+            if request.session['chc-otp'] == otp:
+                del request.session['chc-otp']
+                return render(request,'kollegecliq/change-password.html',context={'message' : message, 'type':'chpc'})
+                # return redirect('/login/') 
+            else:
+                message = "Wrong OTP! Please resend."
+                return render(request,'kollegecliq/otpverify.html',context={'message' : message, 'type':'chpc'})
     return redirect('/login/')
 
 def resend_otp(request):

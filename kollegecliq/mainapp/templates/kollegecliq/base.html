@@ -130,7 +130,7 @@
                             <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+919084086876</a></h6>
                         </div>
                         {% if isLogin %}
-                        <a href="/logout/" class="header-icon" title="login"><i class="fas fa-sign-out-alt"></i></a>
+                        <a href="/logout/" class="header-icon" title="logout"><i class="fas fa-sign-out-alt"></i></a>
                         {% else %}
                         <a href="/login/" class="header-icon" title="login"><i class="icon-user-2"></i></a>
                         {% endif %}
@@ -139,7 +139,7 @@
                         <!-- <a href="wishlist.html" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a> -->
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a href="#" title="Wishlist" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-wishlist-2"></i>
                                 <span class="cart-count badge-circle">3</span>
                             </a>
@@ -643,12 +643,12 @@
                 </ul>
 
                 <ul class="mobile-menu">
-                    <li><a href="login.html">My Account</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="wishlist.html">My Wishlist</a></li>
+                    <li><a href="/myaccount/">My Account</a></li>
+                    <li><a href="/contact/">Contact Us</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/wishlist/">My Wishlist</a></li>
                     <li><a href="cart.html">Cart</a></li>
-                    <li><a href="login.html" class="login-link">Log In</a></li>
+                    <li><a href="/login/" class="login-link">Log In</a></li>
                 </ul>
             </nav>
             <!-- End .mobile-nav -->

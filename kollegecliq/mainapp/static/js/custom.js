@@ -50,6 +50,7 @@ function LoginClicked(){
                 location.replace("/")
             }
             else{
+                console.log(response.message);
                 $('#alert-error').css("display", "block");
                 $('#error-message').text(" "+response.message)
                 setTimeout(removeError                  
@@ -64,6 +65,23 @@ function LoginClicked(){
 
 function removeError(){
     $('#alert-error').css("display", "none")
+}
+
+setTimeout(removeOnLoadError                  
+    ,5000);
+function removeOnLoadError(){
+    $('#django-error').remove();
+}
+
+function validPhoneEmail(){
+    var username = $('#username').val();
+    if ((username.length == 10 && isNumeric(username)) || ValidateEmail(username)){
+        $('#username').css("border-color","green");
+    }else if(username.length==0){
+        $('#username').css("border-color","#dfdfdf");
+    }else{
+        $('#username').css("border-color","red");
+    }
 }
 
 function validatePhone(){
@@ -102,6 +120,39 @@ function validatePass(){
         $('#password1').css("border-color","#dfdfdf");
         $('#password2').css("border-color","#dfdfdf");
     }
+}
+
+function disableUsername(){
+    var username = $('#user-username').val()
+    if (isNumeric(username)){
+        $('#user-phone').prop('disabled', true);
+    }else if(ValidateEmail(username)){
+        $('#user-email').prop('disabled', true);
+    }
+}
+disableUsername()
+
+function submitEditProfile(){
+    var name = $("#user-name").val()
+    var username = $("#user-username").val()
+    var email = $("#user-email").val()
+    var phone = $("#user-phone").val()
+    var currentpassword = $("#acc-password").val()
+    var password1 = $("#password1").val()
+    var password2 = $("#password2").val()
+    if ((currentpassword == '' && (password1 == password2)) || (currentpassword != '' && (password1 == password2))){
+        // console.log(name, username, email, phone, password1, password2, currentpassword)
+        $.ajax({
+            method: "POST",
+            url: "/edit-profile/",
+            data: {'name':name,'username':username,'email':email,'phone':phone,'currentpassword':currentpassword,'password1':password1,'password2':password2},
+            success: function (response) {
+                $('#profile-error').text(response.message);
+        }
+        });
+    }else{
+        $('#profile-error').text("Password don't match.");
+    }        
 }
 
 var state_arr = new Array("Andaman & Nicobar", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra & Nagar Haveli", "Daman & Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttar Pradesh", "Uttaranchal", "West Bengal");
