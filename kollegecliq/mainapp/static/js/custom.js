@@ -217,7 +217,3 @@ function print_city(city_id, city_index){
 	}
 }
 print_state("sts");
-
-function manish(){
-    
-}
